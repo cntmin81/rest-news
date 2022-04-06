@@ -16,22 +16,22 @@ public class NewsService {
     private NewsRepository repo;
 
     // Get all
-    protected List<News> getAll() {
+    public List<News> getAll() {
         return repo.findAll();
     }
 
     // Get one by id
-    protected News getOneById(Long id) {
+    public News getOneById(Long id) {
         return repo.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
     }
 
     // Create
-    protected News create(News news) {
+    public News create(News news) {
         return repo.save(news);
     }
 
     // Update
-    protected News update(Long id, News newNews) {
+    public News update(Long id, News newNews) {
         return repo
                 .findById(id)
                 .map(
@@ -52,7 +52,8 @@ public class NewsService {
     }
 
     // Delete
-    protected void delete(Long id) {
-        repo.deleteById(id);
+    public void delete(Long id) {
+        News news = repo.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
+        repo.delete(news);
     }
 }
