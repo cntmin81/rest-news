@@ -1,1 +1,1 @@
-연습용 뉴스 게시판
+News board for training
